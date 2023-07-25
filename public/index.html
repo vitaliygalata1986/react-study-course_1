@@ -18,12 +18,30 @@
     ></script>
 
     <script>
+      const Book = ({ name, year, price }) => {
+        // console.log(props);
+        return React.createElement('div', {}, [
+          React.createElement('h2', {}, name),
+          React.createElement('p', {}, year),
+          React.createElement('p', {}, price),
+        ]);
+      };
+
       const App = () => {
-        return React.createElement(
-          'h1',
-          { id: 'hello', className: 'class1' },
-          'Hello from React'
-        );
+        return React.createElement('div', {}, [
+          React.createElement(
+            'h1',
+            { id: 'hello', className: 'class1' },
+            'Hello from React'
+          ),
+          React.createElement(Book, { name: 'JS', year: 2023, price: 10000 }),
+          React.createElement(Book, { name: 'PHP', year: 2022, price: 15000 }),
+          React.createElement(Book, {
+            name: 'React',
+            year: 2021,
+            price: 13000,
+          }),
+        ]);
       };
 
       ReactDOM.render(
