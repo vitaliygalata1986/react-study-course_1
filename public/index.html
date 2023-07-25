@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <title>React App</title>
   </head>
   <body>
@@ -19,5 +16,20 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+
+    <script>
+      const App = () => {
+        return React.createElement(
+          'h1',
+          { id: 'hello', className: 'class1' },
+          'Hello from React'
+        );
+      };
+
+      ReactDOM.render(
+        React.createElement(App),
+        document.getElementById('root')
+      );
+    </script>
   </body>
 </html>
