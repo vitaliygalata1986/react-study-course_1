@@ -6,7 +6,7 @@ function App(name, year, price) {
     <div>
       <Book name="JS" year="2023" price="10000" />
       <Book name="'PHP'" year="2022" price="15000" />
-      <Book name="React" year="2021" price="13000" />
+      <Book year="2021" price="13000" />
     </div>
   );
 }
