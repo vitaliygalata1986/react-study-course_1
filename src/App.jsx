@@ -6,21 +6,6 @@ class App extends Component {
     count: 0,
   };
 
-  handleClickPlus = () => {
-    // this.setState(
-    //   (prevState) => ({ count: prevState.count + 1 }),
-    //   () => {
-    //     console.log('setState complete');
-    //   }
-    // );
-    // this.setState((prevState) => ({ count: prevState.count + 1 }));
-    // this.setState((prevState) => ({ count: prevState.count + 1 }));
-
-    this.setState({ count: this.state.count + 1 });
-
-    console.log('From handle click');
-  };
-
   handleClick = (params) => {
     params === 'plus'
       ? this.setState({ count: this.state.count + 1 })
@@ -34,6 +19,9 @@ class App extends Component {
         <button onClick={() => this.handleClick('minus')}>-</button>
         {this.state.count}
         <button onClick={() => this.handleClick('plus')}>+</button>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          +
+        </button>
       </div>
     );
   }
