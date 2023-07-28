@@ -31,10 +31,9 @@ class App extends Component {
     return (
       <div className="App">
         React
-        <p>{this.state.count}</p>
         <button onClick={() => this.handleClick('minus')}>-</button>
+        {this.state.count}
         <button onClick={() => this.handleClick('plus')}>+</button>
-        {/* так как мы работаем с классовым компонентом, то доступ к handleClick только через this */}
       </div>
     );
   }
