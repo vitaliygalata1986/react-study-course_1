@@ -7,9 +7,15 @@ class App extends Component {
   };
 
   handleClick = () => {
-    this.setState((prevState) => ({ count: prevState.count + 1 }));
-    this.setState((prevState) => ({ count: prevState.count + 1 }));
-    this.setState((prevState) => ({ count: prevState.count + 1 }));
+    this.setState(
+      (prevState) => ({ count: prevState.count + 1 }),
+      () => {
+        console.log('setState complete');
+      }
+    );
+    // this.setState((prevState) => ({ count: prevState.count + 1 }));
+    // this.setState((prevState) => ({ count: prevState.count + 1 }));
+    console.log('From handle click');
   };
 
   render() {
