@@ -8,3 +8,7 @@
   height: 20px;
   cursor: pointer;
 }
+
+.App .btn {
+  width: auto;
+}
