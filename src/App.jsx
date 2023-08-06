@@ -1,61 +1,35 @@
 import './App.css';
 import React, { Component } from 'react';
 
+let count = localStorage.getItem('timer') ? +localStorage.getItem('timer') : 0;
+
 class App extends Component {
   state = {
-    count: 0,
-    posts: [],
-    loading: true,
-    comments: [],
+    count,
   };
 
-  handleClick = (params) => {
-    params === 'plus'
-      ? this.setState({ count: this.state.count + 1 })
-      : this.setState({ count: this.state.count - 1 });
-  };
-
-  componentDidMount() {
-    console.log('componentDidMount');
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => this.setState({ posts: data, loading: false }));
-
+  startTimer = (params) => {
+    console.log(this.state.count);
     this.timerId = setInterval(() => {
-      fetch('https://jsonplaceholder.typicode.com/comments?_start=0&_limit=2')
-        .then((response) => response.json())
-        .then((data) => this.setState({ comments: data }));
-    }, 3000);
-  }
-
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
+      this.setState({ count: this.state.count + 1 });
+    }, 1000);
+  };
 
   componentWillUnmount() {
-    // размонитируем приложение - сделаем отмену таймера
     clearInterval(this.timerId);
+    localStorage.setItem('timer', this.state.count);
   }
 
   render() {
-    console.log('render', this.state.count);
+    localStorage.setItem('timer', this.state.count);
     return (
       <div className="App">
-        React
-        <button onClick={() => this.handleClick('minus')}>-</button>
-        {this.state.count}
-        <button onClick={() => this.handleClick('plus')}>+</button>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          +
-        </button>
         <button className="btn" onClick={() => this.componentWillUnmount()}>
-          Отмена интервала
+          Stop
         </button>
-        {this.state.loading ? (
-          <h3>Loading...</h3>
-        ) : (
-          <h3>{this.state.posts.length} was loaded</h3>
-        )}
+        {this.state.count}
+        <button onClick={this.startTimer}>Start</button>
+        <button onClick={() => this.setState({ count: 0 })}>Reset</button>
       </div>
     );
   }
