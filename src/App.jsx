@@ -14,8 +14,14 @@ class App extends Component {
       this.setState({ count: this.state.count + 1 });
     }, 1000);
   };
-  stopTimer = () => {};
-  resetTimer = () => {};
+  stopTimer = () => {
+    this.setState({ isCounting: false });
+    clearInterval(this.counterID);
+  };
+  resetTimer = () => {
+    this.setState({ isCounting: false, count: 0 });
+    clearInterval(this.counterID);
+  };
 
   componentDidMount() {}
 
