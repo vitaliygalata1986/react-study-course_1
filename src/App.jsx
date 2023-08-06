@@ -8,28 +8,33 @@ class App extends Component {
     count,
   };
 
-  startTimer = (params) => {
+  startTimer = () => {
     console.log(this.state.count);
     this.timerId = setInterval(() => {
       this.setState({ count: this.state.count + 1 });
     }, 1000);
   };
 
-  componentWillUnmount() {
+  resetTimer = () => {
+    this.setState({ count: 0 });
+    clearInterval(this.timerId);
+  };
+
+  stopTimer = () => {
     clearInterval(this.timerId);
     localStorage.setItem('timer', this.state.count);
-  }
+  };
 
   render() {
     localStorage.setItem('timer', this.state.count);
     return (
       <div className="App">
-        <button className="btn" onClick={() => this.componentWillUnmount()}>
+        <button className="btn" onClick={this.stopTimer}>
           Stop
         </button>
         {this.state.count}
         <button onClick={this.startTimer}>Start</button>
-        <button onClick={() => this.setState({ count: 0 })}>Reset</button>
+        <button onClick={this.resetTimer}>Reset</button>
       </div>
     );
   }
