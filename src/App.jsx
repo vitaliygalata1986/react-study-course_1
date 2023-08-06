@@ -1,11 +1,9 @@
 import './App.css';
 import React, { Component } from 'react';
 
-let count = localStorage.getItem('timer') ? +localStorage.getItem('timer') : 0;
-
 class App extends Component {
   state = {
-    count,
+    count: 0,
   };
 
   startTimer = () => {
@@ -25,8 +23,24 @@ class App extends Component {
     localStorage.setItem('timer', this.state.count);
   };
 
-  render() {
+  componentDidUpdate() {
     localStorage.setItem('timer', this.state.count);
+  }
+
+  componentDidMount() {
+    // один раз, как мы смонтировали приложение, нам нужно вытащить значение из localStorage
+    const userCount = localStorage.getItem('timer');
+    if (userCount) {
+      this.setState({ count: +userCount });
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
+  render() {
+    console.log(this.state.count);
     return (
       <div className="App">
         <button className="btn" onClick={this.stopTimer}>
