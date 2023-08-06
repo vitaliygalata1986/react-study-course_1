@@ -14,20 +14,32 @@ class App extends Component {
       this.setState({ count: this.state.count + 1 });
     }, 1000);
   };
+
   stopTimer = () => {
     this.setState({ isCounting: false });
     clearInterval(this.counterID);
   };
+
   resetTimer = () => {
     this.setState({ isCounting: false, count: 0 });
     clearInterval(this.counterID);
   };
 
-  componentDidMount() {}
+  componentDidUpdate() {
+    localStorage.setItem('timer', this.state.count);
+  }
 
-  componentDidUpdate() {}
+  componentDidMount() {
+    // один раз, как мы смонтировали приложение, нам нужно вытащить значение из localStorage
+    const userCount = localStorage.getItem('timer');
+    if (userCount) {
+      this.setState({ count: +userCount });
+    }
+  }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
 
   render() {
     return (
