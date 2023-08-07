@@ -1,5 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
+import Posts from './components/Posts';
 
 class App extends Component {
   state = {
@@ -10,12 +11,15 @@ class App extends Component {
     ],
   };
 
+  handleSomething = () => {
+    console.log('App.jsx setState updated');
+  };
+
   render() {
+    const { posts } = this.state; // this.state.posts
     return (
       <div className="App">
-        {this.state.posts.map((post, index) => (
-          <h2 key={post.id}>{post.name}</h2>
-        ))}
+        <Posts posts={posts} cb={this.handleSomething} />
       </div>
     );
   }
