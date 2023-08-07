@@ -1,9 +1,15 @@
 import Post from './Post';
-function Posts(props) {
+function Posts({ posts, removePost, cb }) {
   return (
     <div>
-      {props.posts.map((post) => (
-        <Post key={post.id} name={post.name} cb={props.cb}></Post>
+      {posts.map(({ id, name }, index) => (
+        <Post
+          key={id}
+          id={id}
+          name={name}
+          cb={cb}
+          removePost={removePost}
+        ></Post>
       ))}
     </div>
   );

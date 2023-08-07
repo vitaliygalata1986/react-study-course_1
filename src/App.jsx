@@ -15,11 +15,19 @@ class App extends Component {
     console.log('App.jsx setState updated');
   };
 
+  removePost = (id) => {
+    this.setState({ posts: this.state.posts.filter((post) => post.id !== id) });
+  };
+
   render() {
     const { posts } = this.state; // this.state.posts
     return (
       <div className="App">
-        <Posts posts={posts} cb={this.handleSomething} />
+        <Posts
+          posts={posts}
+          cb={this.handleSomething}
+          removePost={this.removePost}
+        />
       </div>
     );
   }
